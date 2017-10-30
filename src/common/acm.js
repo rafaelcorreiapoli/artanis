@@ -4,7 +4,6 @@ import { sleep } from '../common/utils'
 const acm = new AWS.ACM({
   region: 'us-east-1',
 });
-export default acm
 
 
 export const requestCertficate = ({
