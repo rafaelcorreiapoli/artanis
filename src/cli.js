@@ -11,7 +11,7 @@ const cliHandler = (projectName, options) => {
   mainController.cliRoutine({ projectName, tld }, system.prod)
 }
 program
-  .version('0.1.0')
+  .version('1.0.0')
 
 program
   .command('new <projectName>')
