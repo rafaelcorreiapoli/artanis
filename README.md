@@ -5,7 +5,7 @@
 *" Your next Static Website using AWS infrastructure with one command! "*
 
 ## Features
-![Features](https://raw.githubusercontent.com/rafaelcorreiapoli/artanis/master/src/resources/images/features.jpg)
+![Features](https://raw.githubusercontent.com/rafaelcorreiapoli/artanis/master/src/resources/images/features.png)
 
 - ✅ Static website with S3
 - ✅ CDN with CloudFront
