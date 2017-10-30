@@ -41,3 +41,4 @@ artanis new my-awesome-static-website -t io
 - [ ] Buy domains
 - [ ] Better error handling
 - [ ] Interactive CLI
+- [ ] Write tests :)
