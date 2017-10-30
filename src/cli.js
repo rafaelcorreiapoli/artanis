@@ -14,10 +14,10 @@ import * as system from './system'
 // import components from './components'
 // import message from './modules/ui/message'
 //
-// const main = async (projectName, { tdl }) => {
+// const main = async (projectName, { tld }) => {
 //   await message('Artanis', 'bright_blue')
 //
-//   const domain = `${projectName}.${tdl}`
+//   const domain = `${projectName}.${tld}`
 //   console.log(`Setting up project for ${domain}`)
 //
 //   try {
@@ -51,7 +51,7 @@ program
 
 program
   .command('new <projectName>')
-  .option('-t, --tdl [tdl]', 'Top level domain', 'com.br')
+  .option('-t, --tld [tld]', 'Top level domain', 'com.br')
   .action(cliHandler)
 
 program.parse(process.argv);

@@ -1,35 +1,36 @@
 import { getBucketName } from './logic'
 import * as aws from './diplomat/aws'
+import fakeWebsite from '../../resources/fake-website'
 
-export const setupBucket = async ({ domain }, { spinner, s3 }) => {
+export const setupBucket = async ({ domain }, { ui, s3 }) => {
   const bucketName = getBucketName(domain)
 
   try {
     const exists = await aws.bucketExists(bucketName, { s3 })
     if (exists) {
-      spinner.start(`Deleting bucket ${bucketName}`)
-      await aws.deleteBucket(bucketName, { force: true }, { s3 })
-      spinner.succeed()
+      ui.spinner.start(`Deleting bucket ${bucketName}`)
+      await aws.deleteBucket(bucketName, true, { s3 })
+      ui.spinner.succeed()
     }
 
 
-    spinner.start(`Creating bucket ${bucketName}`)
+    ui.spinner.start(`Creating bucket ${bucketName}`)
     await aws.createBucket(bucketName, { s3 })
-    spinner.succeed()
+    ui.spinner.succeed()
 
-    spinner.start(`Setting policy for ${bucketName}`)
+    ui.spinner.start(`Setting policy for ${bucketName}`)
     await aws.setBucketPolicy(bucketName, { s3 })
-    spinner.succeed()
+    ui.spinner.succeed()
 
-    spinner.start(`Configuring website for ${bucketName} - host`)
+    ui.spinner.start(`Configuring website for ${bucketName} - host`)
     await aws.configureBucketWebsite(bucketName, { s3 })
-    spinner.succeed()
+    ui.spinner.succeed()
 
-    spinner.start(`Uploading test website to ${bucketName}`)
-    await aws.uploadFakeWebsite(bucketName, { s3 })
-    spinner.succeed()
+    ui.spinner.start(`Uploading test website to ${bucketName}`)
+    await aws.uploadFakeWebsite(bucketName, fakeWebsite, { s3 })
+    ui.spinner.succeed()
   } catch (err) {
-    spinner.fail()
+    ui.spinner.fail()
     console.log(err)
     throw err
   }

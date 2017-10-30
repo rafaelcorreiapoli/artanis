@@ -33,9 +33,9 @@ export const bucketExists = async (bucketName, { s3 }) => {
   }
 }
 
-export const deleteBucket = async (bucketName, { force } = { force: false }, { s3 }) => {
+export const deleteBucket = async (bucketName, force = false, { s3 }) => {
   if (force) {
-    await emptyBucket(bucketName)
+    await emptyBucket(bucketName, { s3 })
   }
   return s3.deleteBucket({
     Bucket: bucketName,
